@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 let isNumder = function(n){
    return !isNaN(parseFloat(n)) && isFinite(n);
 };
@@ -10,6 +10,9 @@ function DomElement (selector, height, width, bg, fontSize){
    this.bg = bg;
    this.fontSize = fontSize;
 }
+
+let div;
+let p;
 
 DomElement.prototype.createElement = function (){
    let newSelector = prompt('Введите имя стелектора Selector (если вы начнёте запись с "." тогда создаться div. А если с "#" тогда создаться p)');
@@ -30,7 +33,7 @@ DomElement.prototype.createElement = function (){
    let firstElemSelector = newDomElement.selector.substr(0, 1);
    
    if (firstElemSelector === '.'){
-      let div = document.createElement('div');
+      div = document.createElement('div');
       div.classList.add(newDomElement.selector.substr(1));
       div.innerHTML = prompt("Введите текст который мы запишем в элементе");
       console.log('div: ', div);
@@ -40,7 +43,7 @@ DomElement.prototype.createElement = function (){
       div.style.fontSize = newFontSize + "px";
       document.body.append(div);
    } else if (firstElemSelector === '#'){
-      let p = document.createElement('p');
+      p = document.createElement('p');
       p.setAttribute( "id", newDomElement.selector.substr(1));
       p.innerHTML = prompt("Введите текст который мы запишем в элементе");
       console.log('p: ', p);
@@ -53,3 +56,44 @@ DomElement.prototype.createElement = function (){
 };
 
 DomElement.prototype.createElement();
+
+
+let Top = 0;
+let Left = 0;
+
+document.addEventListener('keydown', (e)=> {
+
+   // if (e.key === 'ArrowRight'){
+   //    div.style.left = Left + 'px';
+   //    Left += 10;
+   // }
+   // if (e.key === 'ArrowLeft'){
+   //    div.style.left = Left + 'px';
+   //    Left -= 10;
+   // }
+   // if (e.key === 'ArrowDown'){
+   //    div.style.top = Top + 'px';
+   //    Top += 10;
+   // }
+   // if (e.key === 'ArrowUp'){
+   //    div.style.top = Top + 'px';
+   //    Top -= 10;
+   // }
+
+   if (e.key === 'ArrowRight'){
+      p.style.left = Left + 'px';
+      Left += 10;
+   }
+   if (e.key === 'ArrowLeft'){
+      p.style.left = Left + 'px';
+      Left -= 10;
+   }
+   if (e.key === 'ArrowDown'){
+      p.style.top = Top + 'px';
+      Top += 10;
+   }
+   if (e.key === 'ArrowUp'){
+      p.style.top = Top + 'px';
+      Top -= 10;
+   }
+});
